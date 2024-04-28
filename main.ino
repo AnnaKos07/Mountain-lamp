@@ -12,13 +12,11 @@ Encoder encoder(PIN_CLK, PIN_DT);
 
 void setup() {
 
- //  pinMode(PIN_DEVICE1_GND, OUTPUT); // Устанавливаем пин GND устройства 1 как выход
-  //pinMode(PIN_DEVICE2_GND, OUTPUT);
   strip.setBrightness(10);   
   strip.begin();
   strip.show(); 
 
-  pinMode(13, OUTPUT); // выход для питания энкодера
+  pinMode(13, OUTPUT); // GROUND PIN FOR ENCODER
   pinMode(PIN_BUTTON, INPUT_PULLUP);
   pinMode(PIN_CLK, INPUT);
   pinMode(PIN_DT, INPUT);
@@ -52,7 +50,6 @@ void loop() {
   }
   Serial.println(counter);
   
-  //strip.show(); // Применяем изменения
   if (counter == 1){
     strip.setBrightness(brightnessLevel);
     turnOnLEDs();
@@ -69,14 +66,12 @@ void loop() {
     if (counter == 1) {
       turnOnLEDs();
       strip.show();
-      //encoderDelta = previousEncoderState;
       Serial.println("On");
 
     } else if (counter == 2 ) {
       redMode();
       strip.show();
       Serial.println("state 2");
-      //strip.setBrightness(10);
     }
       else {
       counter = 0;
